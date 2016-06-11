@@ -16,10 +16,10 @@ import com.tjgs.robotevolution.level.Level;
 public class GraphicsComponentModel implements ComponentModel{
 
     @Expose
-    public float scaleX = 1f;
+    public float width = 1f;
 
     @Expose
-    public float scaleY = 1f;
+    public float height = 1f;
 
     @Decompose
     @Expose
