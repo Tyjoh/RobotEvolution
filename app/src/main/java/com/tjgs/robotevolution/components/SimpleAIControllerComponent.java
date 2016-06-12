@@ -29,10 +29,7 @@ public class SimpleAIControllerComponent implements Component, MapCollisionListe
     @Override
     public void onUpdate(float dt) {
 
-        if(System.currentTimeMillis() - lastJump >= jumpInterval){
-            physicsComp.jump();
-            lastJump = System.currentTimeMillis();
-        }
+        positionComp.angle += 2f * dt;
 
     }
 

@@ -37,9 +37,14 @@ public class GraphicsRenderer {
                 batch.render();
                 tex.bind();
             }
+//            batch.addSprite(g.getPositionComp().getX(), g.getPositionComp().getY(),
+//                    g.getPositionComp().getAngle(), g.getWidth(), g.getHeight(),
+//                    g.getTileId(), g.getAtlas());
+
             batch.addSprite(g.getPositionComp().getX(), g.getPositionComp().getY(),
-                    g.getPositionComp().getAngle(), g.getScaleX(), g.getScaleY(),
-                    g.getTileId(), g.getAtlas());
+                    g.getPositionComp().getAngle(), g.getWidth(), g.getHeight(),
+                    g.getOriginX(), g.getOriginY(), g.getTileId(), g.getAtlas());
+
         }
         batch.render();
     }

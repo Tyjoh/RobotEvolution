@@ -7,12 +7,12 @@ package com.tjgs.robotevolution.graphics;
 public interface ITexture {
 
     /**
-     * @return texture width
+     * @return texture halfWidth
      */
     int getTextureWidth();
 
     /**
-     * @return texture height
+     * @return texture halfHeight
      */
     int getTextureHeight();
 

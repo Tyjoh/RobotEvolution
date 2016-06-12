@@ -20,8 +20,8 @@ public class Map {
 
 	/**
 	 * Creates new map with dimensions in chunks
-	 * @param width - width of map
-	 * @param height - height of map
+	 * @param width - halfWidth of map
+	 * @param height - halfHeight of map
 	 */
 	public Map(TileSet tileSet, int width, int height){
 
@@ -114,7 +114,7 @@ public class Map {
     }
 
     /**
-     * @return map width
+     * @return map halfWidth
      */
     public int getWidth(){
         return width;

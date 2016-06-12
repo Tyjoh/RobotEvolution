@@ -21,6 +21,12 @@ public class GraphicsComponentModel implements ComponentModel{
     @Expose
     public float height = 1f;
 
+    @Expose
+    public float originX = 0f;
+
+    @Expose
+    public float originY = 0f;
+
     @Decompose
     @Expose
     public TileSet tileSet;

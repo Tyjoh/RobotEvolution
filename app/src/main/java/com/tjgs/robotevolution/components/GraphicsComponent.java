@@ -6,7 +6,6 @@ import com.tjgs.robotevolution.components.model.GraphicsComponentModel;
 import com.tjgs.robotevolution.graphics.Texture;
 import com.tjgs.robotevolution.graphics.TextureAtlas;
 import com.tjgs.robotevolution.graphics.TileSet;
-import com.tjgs.robotevolution.manager.TextureManager;
 
 /**
  * Created by Tyler Johnson on 5/2/2016.
@@ -16,8 +15,11 @@ public class GraphicsComponent implements Component, Comparable<GraphicsComponen
 
     protected PositionComponent positionComp;
 
-    protected float scaleX;
-    protected float scaleY;
+    protected float width;
+    protected float height;
+
+    protected float originX;
+    protected float originY;
 
     protected int tileId;
 
@@ -27,8 +29,11 @@ public class GraphicsComponent implements Component, Comparable<GraphicsComponen
 
     public GraphicsComponent(GraphicsComponentModel model){
 
-        this.scaleX = model.scaleX;
-        this.scaleY = model.scaleY;
+        this.width = model.width;
+        this.height = model.height;
+
+        this.originX = model.originX;
+        this.originY = model.originY;
 
         this.tileSet = model.tileSet;
         this.texture = model.tileSet.getTexture();
@@ -42,12 +47,20 @@ public class GraphicsComponent implements Component, Comparable<GraphicsComponen
         return positionComp;
     }
 
-    public float getScaleX() {
-        return scaleX;
+    public float getWidth() {
+        return width;
     }
 
-    public float getScaleY() {
-        return scaleY;
+    public float getHeight() {
+        return height;
+    }
+
+    public float getOriginX() {
+        return originX;
+    }
+
+    public float getOriginY() {
+        return originY;
     }
 
     public int getTileId() {
@@ -69,7 +82,6 @@ public class GraphicsComponent implements Component, Comparable<GraphicsComponen
 
     @Override
     public void onRender() {
-        //batcher.addSprite(positionComp.getX(), positionComp.getY(), positionComp.getAngle(), scaleX, scaleY, tileId, atlas);
     }
 
     @Override
@@ -88,8 +100,10 @@ public class GraphicsComponent implements Component, Comparable<GraphicsComponen
     @Override
     public GraphicsComponentModel getCompoenentModel() {
         GraphicsComponentModel model = new GraphicsComponentModel();
-        model.scaleX = scaleX;
-        model.scaleY = scaleY;
+        model.width = width;
+        model.height = height;
+        model.originX = originX;
+        model.originY = originY;
         model.tileSet = tileSet;
         model.tileId = tileId;
         return model;

@@ -104,14 +104,14 @@ public class Texture implements ITexture{
     }
 
     /**
-     * @return texture width
+     * @return texture halfWidth
      */
     public int getTextureWidth() {
         return textureWidth;
     }
 
     /**
-     * @return texture height
+     * @return texture halfHeight
      */
     public int getTextureHeight() {
         return textureHeight;

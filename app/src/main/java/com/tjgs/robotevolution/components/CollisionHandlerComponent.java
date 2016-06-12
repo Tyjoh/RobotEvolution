@@ -23,7 +23,6 @@ public class CollisionHandlerComponent implements Component, EntityCollisionList
     public CollisionHandlerComponent(CollisionHandlerModel model, Level level){
         this.level = level;
         mapColliderLinked = false;
-        score++;
     }
 
     @Override

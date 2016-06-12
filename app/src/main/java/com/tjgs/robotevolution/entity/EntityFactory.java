@@ -5,6 +5,7 @@ import com.tjgs.robotevolution.components.model.CollisionHandlerModel;
 import com.tjgs.robotevolution.components.model.GraphicsComponentModel;
 import com.tjgs.robotevolution.components.model.PhysicsComponentModel;
 import com.tjgs.robotevolution.components.model.PositionComponentModel;
+import com.tjgs.robotevolution.components.model.SimpleAIControllerComponentModel;
 import com.tjgs.robotevolution.level.Level;
 
 /**
@@ -34,7 +35,7 @@ public class EntityFactory {
         PositionComponentModel posModel = new PositionComponentModel();
         posModel.x = x;
         posModel.y = y;
-        posModel.angle = 45f;
+        //posModel.angle = 45f;
         builder.addComponent(posModel);
 
         PhysicsComponentModel physModel = new PhysicsComponentModel();
@@ -48,8 +49,10 @@ public class EntityFactory {
         float height = 0.5f;
 
         GraphicsComponentModel graphModel = new GraphicsComponentModel();
-        graphModel.scaleX = width;
-        graphModel.scaleY = height;
+        graphModel.width = width;
+        graphModel.height = height;
+//        graphModel.originX = (width / 2f);
+//        graphModel.originY = (height / 2f);
         graphModel.tileId = 0;
         graphModel.tileSet.widthTiles = 1;
         graphModel.tileSet.heightTiles = 1;
@@ -59,7 +62,12 @@ public class EntityFactory {
         ColliderComponentModel collModel = new ColliderComponentModel();
         collModel.width = width;
         collModel.height = height;
+//        collModel.originX = (width / 2f);
+//        collModel.originY = (height / 2f);
         builder.addComponent(collModel);
+
+        //SimpleAIControllerComponentModel aiComp = new SimpleAIControllerComponentModel();
+        //builder.addComponent(aiComp);
 
         return builder;
     }
@@ -82,8 +90,8 @@ public class EntityFactory {
         playerBuilder.addComponent(physModel);
 
         GraphicsComponentModel graphModel = new GraphicsComponentModel();
-        graphModel.scaleX = 1;
-        graphModel.scaleY = 2;
+        graphModel.width = 1;
+        graphModel.height = 2;
         graphModel.tileId = 6;
         graphModel.tileSet.widthTiles = 8;
         graphModel.tileSet.heightTiles = 4;

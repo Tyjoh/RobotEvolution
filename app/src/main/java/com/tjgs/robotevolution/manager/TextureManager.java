@@ -64,7 +64,7 @@ public class TextureManager {
             atlas = new TextureAtlas(width, height);
             atlases.put(id, atlas);
         }else{
-            //Log.d(TAG, "Atlas reused: " + width + "x" + height);
+            //Log.d(TAG, "Atlas reused: " + halfWidth + "x" + halfHeight);
         }
 
         return atlas;

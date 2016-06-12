@@ -78,7 +78,7 @@ public class CollisionTile {
 
         float lineY = (slope * dx) + y1;
 
-        //clamp height value within tile bounds
+        //clamp halfHeight value within tile bounds
         if(lineY > Math.max(y1, y2)){
             lineY = Math.max(y1, y2);
         }else if(lineY < Math.min(y1, y2)){

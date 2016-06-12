@@ -19,6 +19,12 @@ public class ColliderComponentModel implements ComponentModel{
     @Expose
     public float height;
 
+    @Expose
+    public float originX = 0f;
+
+    @Expose
+    public float originY = 0f;
+
     @Override
     public Component build(Level level) {
         return new ColliderComponent(this);

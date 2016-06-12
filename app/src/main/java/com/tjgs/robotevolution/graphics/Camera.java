@@ -21,7 +21,7 @@ public class Camera {
 
     private static final String TAG = Camera.class.getSimpleName();
 
-    //projected screen width = VIEW_WIDTH * 2, same for view height
+    //projected screen halfWidth = VIEW_WIDTH * 2, same for view halfHeight
     private float VIEW_WIDTH = 8f;
     private float VIEW_HEIGHT;//calculated on initialization
 
@@ -70,8 +70,8 @@ public class Camera {
      * Creates a new camera positioned at x, y world coordinates
      * @param x initial x position of camera
      * @param y initial y position of camera
-     * @param width screen width
-     * @param height screen height
+     * @param width screen halfWidth
+     * @param height screen halfHeight
      */
     public Camera(float x, float y, int width, int height){
         this.x = x;
@@ -85,8 +85,8 @@ public class Camera {
 
     /**
      * Creates a new camera positioned at 0, 0 world coordinates
-     * @param width screen width
-     * @param height screen height
+     * @param width screen halfWidth
+     * @param height screen halfHeight
      */
     public Camera(int width, int height){
         this(0, 0, width, height);
@@ -201,8 +201,8 @@ public class Camera {
     /**
      * updates the projection matrix with the new screen size and recalculates
      * the combined view-projection matrix
-     * @param width screen width
-     * @param height screen height
+     * @param width screen halfWidth
+     * @param height screen halfHeight
      */
     public void updateScreenSize(int width, int height){
 

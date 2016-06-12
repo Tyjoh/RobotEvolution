@@ -33,7 +33,6 @@ public class Shader {
                     "varying vec2 vTexCoord;" +
                     "void main() {" +
                     "  gl_FragColor = vColor * texture2D(texture, vTexCoord);" +
-                    //"	gl_FragColor = vColor;" +
                     "}";
 
     //location of source files TODO: needs to be switched to resource id

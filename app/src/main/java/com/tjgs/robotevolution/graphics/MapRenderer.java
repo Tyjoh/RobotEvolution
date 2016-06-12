@@ -39,12 +39,10 @@ public class MapRenderer {
             for (int y = startY; y < endY; y++) {
 
                 int texId = map.getTileLayer1(x, y).getTextureID();
-                //check for valid texture
-//                if(texId != -1)
-//                    batch.addSprite(x + 0.5f, y + 0.5f, 0, texId);
 
                 if(texId != -1)
-                    batch.addSprite(x + 0.5f, y + 0.5f, 0, 1, 1, texId, map.getTileSet().getAtlas());
+                    //batch.addSprite(x + 0.5f, y + 0.5f, 0, 1, 1, texId, map.getTileSet().getAtlas());
+                batch.addSprite(x + 0.5f, y + 0.5f, 0, 1, 1, 0, 0, texId, map.getTileSet().getAtlas());
             }
         }
 

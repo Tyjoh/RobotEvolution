@@ -15,9 +15,13 @@ import java.util.ArrayList;
 
 public class ColliderComponent implements Component{
 
-    protected float width;
+    protected float halfWidth;
 
-    protected float height;
+    protected float halfHeight;
+
+    protected float originX = 0f;
+
+    protected float originY = 0f;
 
     protected PositionComponent positionComp;
     protected PhysicsComponent physicsComp;
@@ -27,8 +31,11 @@ public class ColliderComponent implements Component{
 
     public ColliderComponent(ColliderComponentModel model){
 
-        this.width = model.width;
-        this.height = model.height;
+        this.halfWidth = model.width / 2f;
+        this.halfHeight = model.height / 2f;
+
+        this.originX = model.originX;
+        this.originY = model.originY;
 
         mapCollisionListeners = new ArrayList<>();
         entityCollisionListeners = new ArrayList<>();
@@ -76,34 +83,34 @@ public class ColliderComponent implements Component{
         entityCollisionListeners.add(listener);
     }
 
-    public float getLeftBound(){ return positionComp.getX() - (width/2f); }
+    public float getLeftBound(){ return positionComp.getX() - halfWidth - originX; }
 
     public float getRightBound(){
-        return positionComp.getX() + (width/2f);
+        return positionComp.getX() + halfWidth - originX;
     }
 
     public float getLowerBound(){
-        return positionComp.getY() - (height/2f);
+        return positionComp.getY() - halfHeight - originY;
     }
 
     public float getUpperBound(){
-        return positionComp.getY() + (height/2f);
+        return positionComp.getY() + halfHeight - originY;
     }
 
     public float getPrevLeftBound(){
-        return physicsComp.getPrevX() - (width/2f);
+        return physicsComp.getPrevX() - halfWidth - originX;
     }
 
     public float getPrevRightBound(){
-        return physicsComp.getPrevX() + (width/2f);
+        return physicsComp.getPrevX() + halfWidth - originX;
     }
 
     public float getPrevLowerBound(){
-        return physicsComp.getPrevY() - (height/2f);
+        return physicsComp.getPrevY() - halfHeight - originY;
     }
 
     public float getPrevUpperBound(){
-        return physicsComp.getPrevY() + (height/2f);
+        return physicsComp.getPrevY() + halfHeight - originY;
     }
 
     public PhysicsComponent getPhysics(){
@@ -137,8 +144,11 @@ public class ColliderComponent implements Component{
     @Override
     public ColliderComponentModel getCompoenentModel() {
         ColliderComponentModel model = new ColliderComponentModel();
-        model.width = width;
-        model.height = height;
+        model.width = halfWidth * 2f;
+        model.height = halfHeight * 2f;
+
+        model.originX = originX;
+        model.originY = originY;
         return model;
     }
 }

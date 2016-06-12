@@ -6,6 +6,7 @@ import java.nio.ShortBuffer;
 
 /**
  * Created by Tyler Johnson on 4/23/2016.
+ *
  */
 public class IndexBuffer {
 

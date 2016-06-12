@@ -13,14 +13,14 @@ public class MapUtils {
 	}
 
     /**
-     * Generates and populates the given map with flat tiles accross the map at given height
+     * Generates and populates the given map with flat tiles accross the map at given halfHeight
      * @param map map to generate
-     * @param h height of tiles in map
+     * @param h halfHeight of tiles in map
      */
 	public static void flatMapFloor(Map map, int h){
-        //if height is not valid
+        //if halfHeight is not valid
 		if(h >= map.getHeight())
-			throw new RuntimeException("floor height is greater than the map height");
+			throw new RuntimeException("floor halfHeight is greater than the map halfHeight");
 
         //generate tiles
 		for(int i = 0; i < map.getWidth(); i++){
@@ -38,9 +38,9 @@ public class MapUtils {
 
 	public static void flatMapRoof(Map map, int roof){
 
-        //if height is not valid
+        //if halfHeight is not valid
         if(roof >= map.getHeight() || roof < 0)
-            throw new RuntimeException("roof height is greater than the map height");
+            throw new RuntimeException("roof halfHeight is greater than the map halfHeight");
 
         //generate tiles
         for(int i = 0; i < map.getWidth(); i++){

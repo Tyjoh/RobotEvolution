@@ -68,8 +68,8 @@ public class Game implements InputListener{
 
     /**
      * Called when screen size changes
-     * @param width width of screen
-     * @param height height of screen
+     * @param width halfWidth of screen
+     * @param height halfHeight of screen
      */
 	public void screenSizeChanged(int width, int height){
 		//reset screen variables
@@ -161,14 +161,14 @@ public class Game implements InputListener{
     }
 
     /**
-     * @return screen width
+     * @return screen halfWidth
      */
     public int getScreenWidth() {
         return screenWidth;
     }
 
     /**
-     * @return screen height
+     * @return screen halfHeight
      */
     public int getScreenHeight() {
         return screenHeight;

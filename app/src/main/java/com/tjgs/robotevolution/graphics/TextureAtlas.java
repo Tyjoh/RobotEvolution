@@ -50,7 +50,7 @@ public class TextureAtlas {
         int numFloats = height * width * FLOATS_PER_TILE;
         textureCoords = new float[numFloats];
 
-        //width and height of each tile with texture width normalized to 1
+        //halfWidth and halfHeight of each tile with texture halfWidth normalized to 1
         float wFraction = 1f / width;
         float hFraction = 1f / height;
 

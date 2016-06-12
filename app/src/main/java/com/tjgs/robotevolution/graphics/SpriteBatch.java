@@ -95,6 +95,120 @@ public class SpriteBatch{
 
     }
 
+    public void rotate(float[] verts, float rot){
+
+    }
+
+    public void addSprite(float x, float y, float rot, float width, float height, float originX, float originY, int texID, TextureAtlas atlas){
+        atlas.insertTextureCoords(texCoords, 0, texID);
+
+        float hw = width / 2f;
+        float hh = height / 2f;
+
+        float leftX = -hw - originX;
+        float rightX = hw - originX;
+
+        float lowerY = -hh - originY;
+        float upperY = hh - originY;
+
+        final float p1x = leftX;
+        final float p1y = upperY;
+        final float p2x = leftX;
+        final float p2y = lowerY;
+        final float p3x = rightX;
+        final float p3y = lowerY;
+        final float p4x = rightX;
+        final float p4y = upperY;
+
+        float x1;
+        float y1;
+
+        float x2;
+        float y2;
+
+        float x3;
+        float y3;
+
+        float x4;
+        float y4;
+
+        if(rot != 0){
+            float cos = (float) Math.cos(rot);
+            float sin = (float) Math.sin(rot);
+
+            x1 = (cos * p1x) - (sin * p1y);
+            y1 = (sin * p1x) + (cos * p1y);
+
+            x2 = (cos * p2x) - (sin * p2y);
+            y2 = (sin * p2x) + (cos * p2y);
+
+            x3 = (cos * p3x) - (sin * p3y);
+            y3 = (sin * p3x) + (cos * p3y);
+
+            x4 = (cos * p4x) - (sin * p4y);
+            y4 = (sin * p4x) + (cos * p4y);
+
+        }else{
+            x1 = p1x;
+            y1 = p1y;
+
+            x2 = p2x;
+            y2 = p2y;
+
+            x3 = p3x;
+            y3 = p3y;
+
+            x4 = p4x;
+            y4 = p4y;
+        }
+
+        vertices[vertexOffset++] = x1 + x;
+        vertices[vertexOffset++] = y1 + y;
+        vertices[vertexOffset++] = 0;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = texCoords[0];
+        vertices[vertexOffset++] = texCoords[1];
+
+        vertices[vertexOffset++] = x2 + x;
+        vertices[vertexOffset++] = y2 + y;
+        vertices[vertexOffset++] = 0;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = texCoords[2];
+        vertices[vertexOffset++] = texCoords[3];
+
+        vertices[vertexOffset++] = x3 + x;
+        vertices[vertexOffset++] = y3 + y;
+        vertices[vertexOffset++] = 0;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = texCoords[4];
+        vertices[vertexOffset++] = texCoords[5];
+
+        vertices[vertexOffset++] = x4 + x;
+        vertices[vertexOffset++] = y4 + y;
+        vertices[vertexOffset++] = 0;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = 1f;
+        vertices[vertexOffset++] = texCoords[6];
+        vertices[vertexOffset++] = texCoords[7];
+
+        numSprites ++;
+
+        if(numSprites == batchSize){
+            render();
+        }
+    }
+
     /**
      * Adds a sprite to the batch at the given coordinate and texture id, texture must
      * be bound before adding sprites to batch
@@ -232,19 +346,19 @@ public class SpriteBatch{
 //     * @param x sprites x coordinate
 //     * @param y sprites y coordinate
 //     * @param rot sprites rotation
-//     * @param scaleX x scale of the sprite
-//     * @param scaleY y scale of the sprite
+//     * @param halfWidth x scale of the sprite
+//     * @param halfHeight y scale of the sprite
 //     * @param texID texture id of given sprite
 //     * @param atlas texture atlas to use for texture coordinates
 //     */
-//    public void addSprite(float x, float y, float rot, float scaleX, float scaleY, int texID, TextureAtlas atlas){
+//    public void addSprite(float x, float y, float rot, float halfWidth, float halfHeight, int texID, TextureAtlas atlas){
 //
 //        float[] texCoords = new float[8];
 //
 //        atlas.insertTextureCoords(texCoords, 0, texID);
 //
-//        vertices[vertexOffset++] = (quad[0] * scaleX) + x;
-//        vertices[vertexOffset++] = (quad[1] * scaleY) + y;
+//        vertices[vertexOffset++] = (quad[0] * halfWidth) + x;
+//        vertices[vertexOffset++] = (quad[1] * halfHeight) + y;
 //        vertices[vertexOffset++] = quad[2];
 //        vertices[vertexOffset++] = 1f;
 //        vertices[vertexOffset++] = 1f;
@@ -253,8 +367,8 @@ public class SpriteBatch{
 //        vertices[vertexOffset++] = texCoords[0];
 //        vertices[vertexOffset++] = texCoords[1];
 //
-//        vertices[vertexOffset++] = (quad[3] * scaleX) + x;
-//        vertices[vertexOffset++] = (quad[4] * scaleY) + y;
+//        vertices[vertexOffset++] = (quad[3] * halfWidth) + x;
+//        vertices[vertexOffset++] = (quad[4] * halfHeight) + y;
 //        vertices[vertexOffset++] = quad[5];
 //        vertices[vertexOffset++] = 1f;
 //        vertices[vertexOffset++] = 1f;
@@ -263,8 +377,8 @@ public class SpriteBatch{
 //        vertices[vertexOffset++] = texCoords[2];
 //        vertices[vertexOffset++] = texCoords[3];
 //
-//        vertices[vertexOffset++] = (quad[6] * scaleX) + x;
-//        vertices[vertexOffset++] =(quad[7] * scaleY) + y;
+//        vertices[vertexOffset++] = (quad[6] * halfWidth) + x;
+//        vertices[vertexOffset++] =(quad[7] * halfHeight) + y;
 //        vertices[vertexOffset++] = quad[8];
 //        vertices[vertexOffset++] = 1f;
 //        vertices[vertexOffset++] = 1f;
@@ -273,8 +387,8 @@ public class SpriteBatch{
 //        vertices[vertexOffset++] = texCoords[4];
 //        vertices[vertexOffset++] = texCoords[5];
 //
-//        vertices[vertexOffset++] = (quad[9] * scaleX) + x;
-//        vertices[vertexOffset++] = (quad[10] * scaleY) + y;
+//        vertices[vertexOffset++] = (quad[9] * halfWidth) + x;
+//        vertices[vertexOffset++] = (quad[10] * halfHeight) + y;
 //        vertices[vertexOffset++] = quad[11];
 //        vertices[vertexOffset++] = 1f;
 //        vertices[vertexOffset++] = 1f;

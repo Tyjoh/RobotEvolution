@@ -66,7 +66,7 @@ public class MapCollisionSolver {
             //keep track of whether a collision is detected
             boolean leftCollision = false;
 
-            //loop over all the tiles along the height of the object as long as a collision hasn't been detected
+            //loop over all the tiles along the halfHeight of the object as long as a collision hasn't been detected
             //slop is used to prevent clipping on the floor due to rounding error in floating point arithmetic
             for (int i = (int)(bottom + penSlop); i <= (int)(top - penSlop) && !leftCollision; i++){
 
@@ -74,7 +74,7 @@ public class MapCollisionSolver {
                 CollisionTile testTile = map.getCollisionTile(yTileAxis, i);
 
                 //if the tile is a normal solid tile
-                //AND if the bottom of the object is lower than the height of the right side of
+                //AND if the bottom of the object is lower than the halfHeight of the right side of
                 //the tile. This is done so that once in a sloped tile the Y axis collision code
                 //can resolve the vertical component so the object is on top of the slope
                 if(testTile.getType() == TileType.NORMAL &&
@@ -96,7 +96,7 @@ public class MapCollisionSolver {
 
             boolean rightCollision = false;
 
-            //loop over the tiles along the height of the object
+            //loop over the tiles along the halfHeight of the object
             for (int i = (int)(bottom + penSlop); i <= (int)(top - penSlop) && !rightCollision; i++){
 
                 CollisionTile testTile = map.getCollisionTile(yTileAxis, i);
@@ -148,13 +148,13 @@ public class MapCollisionSolver {
             //we need to check the initial X axis tiles and the one above that to allow the object
             //to get onto the slope initially
             for(int j = 0; j < 2; j++) {
-                //loop over the tiles along the width of the object
+                //loop over the tiles along the halfWidth of the object
                 for (int i = (int) (left + penSlop); i <= (int) (right - penSlop); i++) {
 
                     //tile we ar currently testing
                     CollisionTile testTile = map.getCollisionTile(i, xTileAxis);
 
-                    //gets the height of the tile at the left and right of the object
+                    //gets the halfHeight of the tile at the left and right of the object
                     //if the left x coordinate of the object is less than the left x coordinate of
                     //the tile the value is clamped to the x value of the tile same goes for the
                     //right side
@@ -170,7 +170,7 @@ public class MapCollisionSolver {
                     if (testTile.getType() == TileType.NORMAL && maxPen < 0) {
                         bottomCollision = true;
 
-                        //OPTIMIZATION use maxPen to check and adjust largest height, eliminating an branch
+                        //OPTIMIZATION use maxPen to check and adjust largest halfHeight, eliminating an branch
                         if (leftHeight > largestHeight) {
                             largestHeight = leftHeight;
                         }
@@ -199,7 +199,7 @@ public class MapCollisionSolver {
 
             boolean topCollision = false;
 
-            //loop over the tiles along the width of the object
+            //loop over the tiles along the halfWidth of the object
             for (int i = (int)(left + penSlop); i <= (int)(right - penSlop) && !topCollision; i++){
                 //test for collision
                 if(map.getCollisionTile(i, xTileAxis).getType() == TileType.NORMAL){
