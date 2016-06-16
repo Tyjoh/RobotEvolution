@@ -17,6 +17,7 @@ public class MapCollisionSolver {
 
     private static final float penSlop = 0.05f;
 
+
     protected ArrayList<ColliderComponent> components;
 
     protected Map map;
