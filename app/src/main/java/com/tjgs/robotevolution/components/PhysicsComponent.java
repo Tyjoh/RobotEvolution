@@ -12,7 +12,7 @@ public class PhysicsComponent implements Component{
 
     private static final float minVelConst = 0.01f;
 
-    private static final boolean flyMode = false;
+    private static final boolean flyMode = true;
 
     protected PositionComponent positionComp;
 
