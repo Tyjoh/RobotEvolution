@@ -3,6 +3,7 @@ package com.tjgs.robotevolution.entity;
 import com.tjgs.robotevolution.components.Component;
 import com.tjgs.robotevolution.components.ComponentModel;
 import com.tjgs.robotevolution.components.ComponentType;
+import com.tjgs.robotevolution.graphics.SpriteBatch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,9 +51,9 @@ public class Entity {
     /**
      * called after rendering
      */
-    public void render(){
+    public void render(SpriteBatch batch){
         for(Component comp: components){
-            comp.onRender();
+            comp.onRender(batch);
         }
     }
 
@@ -93,7 +94,8 @@ public class Entity {
      * @return true if it does, false otherwise
      */
     public boolean hasComponent(ComponentType type){
-        return componentSlots[type.getIndex()] != null;
+        //if the specific slot is not empty and has the intended type
+        return componentSlots[type.getIndex()] != null && componentSlots[type.getIndex()].getComponentType() == type;
     }
 
     public Component getComponent(ComponentType type){

@@ -5,6 +5,7 @@ import android.util.Log;
 import com.tjgs.robotevolution.collision.EntityCollisionListener;
 import com.tjgs.robotevolution.components.model.ColliderComponentModel;
 import com.tjgs.robotevolution.collision.MapCollisionListener;
+import com.tjgs.robotevolution.graphics.SpriteBatch;
 import com.tjgs.robotevolution.map.CollisionTile;
 import com.tjgs.robotevolution.map.Map;
 import com.tjgs.robotevolution.map.TileType;
@@ -290,7 +291,7 @@ public class ColliderComponent implements Component{
     public void onUpdate(float dt) { }
 
     @Override
-    public void onRender() { }
+    public void onRender(SpriteBatch batch) { }
 
     @Override
     public ComponentType getComponentType() {

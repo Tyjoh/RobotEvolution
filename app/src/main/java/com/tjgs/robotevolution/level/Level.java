@@ -174,6 +174,11 @@ public class Level {
     public void render(SpriteBatch batch){
         mapRenderer.draw(batch, camera);
         entityRenderer.draw(batch, camera);
+
+        for(Entity e:entities.values()){
+            e.render(batch);
+        }
+
     }
 
     public Camera getCamera(){

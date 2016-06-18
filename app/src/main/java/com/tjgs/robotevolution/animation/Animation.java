@@ -5,9 +5,9 @@ package com.tjgs.robotevolution.animation;
  */
 public class Animation {
 
-    private HashMap boneAnimationMap;
-    private int[] frameTimes;
-
-    public Animation()
+//    private HashMap boneAnimationMap;
+//    private int[] frameTimes;
+//
+//    public Animation()
 
 }

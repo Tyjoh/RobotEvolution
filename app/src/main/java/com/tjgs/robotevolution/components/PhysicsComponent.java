@@ -3,6 +3,7 @@ package com.tjgs.robotevolution.components;
 import android.util.Log;
 
 import com.tjgs.robotevolution.components.model.PhysicsComponentModel;
+import com.tjgs.robotevolution.graphics.SpriteBatch;
 
 /**
  * Created by Tyler Johnson on 5/2/2016.
@@ -12,7 +13,7 @@ public class PhysicsComponent implements Component{
 
     private static final float minVelConst = 0.01f;
 
-    private static final boolean flyMode = true;
+    private static final boolean flyMode = !true;
 
     protected PositionComponent positionComp;
 
@@ -164,7 +165,7 @@ public class PhysicsComponent implements Component{
     }
 
     @Override
-    public void onRender() {  }
+    public void onRender(SpriteBatch batch) {  }
 
     @Override
     public ComponentType getComponentType() {

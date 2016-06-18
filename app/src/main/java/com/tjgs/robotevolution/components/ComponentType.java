@@ -9,6 +9,7 @@ public enum ComponentType {
     POSITION(2, new ComponentType[]{}),
     PHYSICS(3, new ComponentType[]{POSITION}),
     GRAPHICS(5, new ComponentType[]{POSITION}),
+    ANIMATED_GRAPHICS(5, new ComponentType[]{POSITION}),
     MAP_COLLIDER(4, new ComponentType[]{POSITION, PHYSICS}),
     PLAYER_CONTROLLER(0, new ComponentType[]{POSITION, PHYSICS, MAP_COLLIDER}),
     AI_CONTROLLER(0, new ComponentType[]{POSITION, PHYSICS, MAP_COLLIDER}),

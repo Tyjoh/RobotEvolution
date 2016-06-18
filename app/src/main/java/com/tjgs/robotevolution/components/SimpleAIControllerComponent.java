@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.tjgs.robotevolution.components.model.SimpleAIControllerComponentModel;
 import com.tjgs.robotevolution.collision.MapCollisionListener;
+import com.tjgs.robotevolution.graphics.SpriteBatch;
 
 /**
  * Created by Tyler Johnson on 6/5/2016.
@@ -34,7 +35,7 @@ public class SimpleAIControllerComponent implements Component, MapCollisionListe
     }
 
     @Override
-    public void onRender() {
+    public void onRender(SpriteBatch batch) {
 
     }
 

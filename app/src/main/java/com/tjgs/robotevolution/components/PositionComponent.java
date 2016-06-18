@@ -1,6 +1,7 @@
 package com.tjgs.robotevolution.components;
 
 import com.tjgs.robotevolution.components.model.PositionComponentModel;
+import com.tjgs.robotevolution.graphics.SpriteBatch;
 
 /**
  * Created by Tyler Johnson on 5/3/2016.
@@ -59,7 +60,7 @@ public class PositionComponent implements Component{
     public void onUpdate(float dt) { }
 
     @Override
-    public void onRender() { }
+    public void onRender(SpriteBatch batch) { }
 
     @Override
     public ComponentType getComponentType() {

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import com.tjgs.robotevolution.Game;
+import com.tjgs.robotevolution.graphics.SpriteBatch;
 import com.tjgs.robotevolution.input.InputListener;
 import com.tjgs.robotevolution.collision.MapCollisionListener;
 
@@ -127,7 +128,7 @@ public class PlayerControllerComponent implements Component, InputListener, MapC
     public void onTopCollision(float penetration) { }
 
     @Override
-    public void onRender() { }
+    public void onRender(SpriteBatch batch) { }
 
     @Override
     public ComponentType getComponentType() {

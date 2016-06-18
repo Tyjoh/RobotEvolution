@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.tjgs.robotevolution.collision.EntityCollisionListener;
 import com.tjgs.robotevolution.components.model.CollisionHandlerModel;
+import com.tjgs.robotevolution.graphics.SpriteBatch;
 import com.tjgs.robotevolution.level.Level;
 
 /**
@@ -39,7 +40,7 @@ public class CollisionHandlerComponent implements Component, EntityCollisionList
     }
 
     @Override
-    public void onRender() {
+    public void onRender(SpriteBatch batch) {
 
     }
 

@@ -123,6 +123,8 @@ public class Game implements InputListener{
         EntityBuilder player = EntityFactory.createPlayerBuilder(16f, 9.5f);
         levelBuilder.addEntityBuilder(player);
 
+        levelBuilder.addEntityBuilder(EntityFactory.createTestSkeletonEntityBuilder(13f, 10.5f));
+
         levelBuilder.addEntityBuilder(EntityFactory.createCollectableBuilder(41.5f, 15, 500));
 
         level = new Level(this, levelBuilder, name);

@@ -1,5 +1,8 @@
 package com.tjgs.robotevolution.entity;
 
+import com.tjgs.robotevolution.animation.Bone;
+import com.tjgs.robotevolution.animation.Skeleton;
+import com.tjgs.robotevolution.components.model.AnimatedGraphicsModel;
 import com.tjgs.robotevolution.components.model.ColliderComponentModel;
 import com.tjgs.robotevolution.components.model.CollisionHandlerModel;
 import com.tjgs.robotevolution.components.model.GraphicsComponentModel;
@@ -7,6 +10,8 @@ import com.tjgs.robotevolution.components.model.PhysicsComponentModel;
 import com.tjgs.robotevolution.components.model.PositionComponentModel;
 import com.tjgs.robotevolution.components.model.SimpleAIControllerComponentModel;
 import com.tjgs.robotevolution.level.Level;
+
+import java.util.HashMap;
 
 /**
  * Created by Tyler Johnson on 6/6/2016.
@@ -107,6 +112,49 @@ public class EntityFactory {
         playerBuilder.addComponent(handlerModel);
 
         return playerBuilder;
+    }
+
+    public static Entity createTestSkeletonEntity(Level level, float x, float y){
+        EntityBuilder builder = createTestSkeletonEntityBuilder(x, y);
+        return builder.build(level);
+    }
+
+    public static EntityBuilder createTestSkeletonEntityBuilder(float x, float y){
+        EntityBuilder skeletonBuilder = new EntityBuilder();
+        skeletonBuilder.id = uniqueId++;
+
+        PositionComponentModel posModel = new PositionComponentModel();
+        posModel.x = x;
+        posModel.y = y;
+        skeletonBuilder.addComponent(posModel);
+
+        // ======== Animation Model ========//
+        AnimatedGraphicsModel aniModel = new AnimatedGraphicsModel();
+        aniModel.tileSet.widthTiles = 2;
+        aniModel.tileSet.heightTiles = 2;
+        aniModel.tileSet.textureName = "metal";
+
+        Bone root = new Bone("Root", null, 1.0f, (float)Math.PI/2f, -0.5f, 0, 1f, 0.25f);
+        Bone limb1 = new Bone("Limb1", root, 0.5f, 0.9f, -0.25f, 0, 0.5f, 0.25f);
+        Bone limb2 = new Bone("Limb2", limb1, 0.5f, 0.9f, -0.25f, 0, 0.5f, 0.25f);
+        Bone limb3 = new Bone("Limb3", root, 0.5f, -0.9f, -0.25f, 0, 0.5f, 0.25f);
+        Bone limb4 = new Bone("Limb4", limb3, 0.5f, -0.9f, -0.25f, 0, 0.5f, 0.25f);
+
+        HashMap<String, Integer> boneTexMap = new HashMap<>();
+        boneTexMap.put("Root", 0);
+        boneTexMap.put("Limb1", 1);
+        boneTexMap.put("Limb2", 2);
+        boneTexMap.put("Limb3", 3);
+        boneTexMap.put("Limb4", 2);
+
+        Skeleton skeleton = new Skeleton(root, boneTexMap);
+        skeleton.update();
+
+        aniModel.skeleton = skeleton;
+        skeletonBuilder.addComponent(aniModel);
+        // ======== Animation Model ========//
+
+        return skeletonBuilder;
     }
 
 }

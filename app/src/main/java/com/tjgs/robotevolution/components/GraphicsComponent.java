@@ -3,6 +3,7 @@ package com.tjgs.robotevolution.components;
 import android.util.Log;
 
 import com.tjgs.robotevolution.components.model.GraphicsComponentModel;
+import com.tjgs.robotevolution.graphics.SpriteBatch;
 import com.tjgs.robotevolution.graphics.Texture;
 import com.tjgs.robotevolution.graphics.TextureAtlas;
 import com.tjgs.robotevolution.graphics.TileSet;
@@ -81,7 +82,7 @@ public class GraphicsComponent implements Component, Comparable<GraphicsComponen
     public void onUpdate(float dt) { }
 
     @Override
-    public void onRender() {
+    public void onRender(SpriteBatch batch) {
     }
 
     @Override
