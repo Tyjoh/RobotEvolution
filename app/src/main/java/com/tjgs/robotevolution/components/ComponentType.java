@@ -13,7 +13,8 @@ public enum ComponentType {
     MAP_COLLIDER(4, new ComponentType[]{POSITION, PHYSICS}),
     PLAYER_CONTROLLER(0, new ComponentType[]{POSITION, PHYSICS, MAP_COLLIDER}),
     AI_CONTROLLER(0, new ComponentType[]{POSITION, PHYSICS, MAP_COLLIDER}),
-    COLLISION_HANDLER(6, new ComponentType[]{MAP_COLLIDER});
+    COLLISION_HANDLER(6, new ComponentType[]{MAP_COLLIDER}),
+    SKELETON_CONTROLLER(7, new ComponentType[]{POSITION, PHYSICS, ANIMATED_GRAPHICS});
 
     private int index;
 

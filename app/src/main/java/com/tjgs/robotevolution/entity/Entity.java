@@ -74,9 +74,11 @@ public class Entity {
     public void addComponent(Component component) {
         componentSlots[component.getComponentType().getIndex()] = component;
 
+        //two lists are used to avoid iterating over the array and checking if a spot is null
+
         int insertIndex = 0;
         boolean spotFound = false;
-
+        //find where to insert into list
         while(!spotFound && insertIndex < components.size()){
             if(component.getComponentType().getIndex() < components.get(insertIndex).getComponentType().getIndex()) {
                 spotFound = true;

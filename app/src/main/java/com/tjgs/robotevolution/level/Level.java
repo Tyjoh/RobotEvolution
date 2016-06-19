@@ -161,6 +161,7 @@ public class Level {
                 entityCollider.removeColliderComponent((ColliderComponent) e.getComponent(ComponentType.MAP_COLLIDER));
                 mapCollider.removeColliderComponent((ColliderComponent) e.getComponent(ComponentType.MAP_COLLIDER));
             }
+
             entities.remove(i);
             Log.d(TAG, "update: entity removed " + i);
         }
@@ -175,10 +176,10 @@ public class Level {
         mapRenderer.draw(batch, camera);
         entityRenderer.draw(batch, camera);
 
+        //TODO: sort entities based on texture and don't use EntityRenderer class
         for(Entity e:entities.values()){
             e.render(batch);
         }
-
     }
 
     public Camera getCamera(){

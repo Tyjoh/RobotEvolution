@@ -2,6 +2,7 @@ package com.tjgs.robotevolution.components.model;
 
 import com.google.gson.annotations.Expose;
 import com.tjgs.robotevolution.Decompose;
+import com.tjgs.robotevolution.animation.Animation;
 import com.tjgs.robotevolution.animation.Skeleton;
 import com.tjgs.robotevolution.components.AnimatedGraphicsComponent;
 import com.tjgs.robotevolution.components.ComponentModel;
@@ -27,6 +28,9 @@ public class AnimatedGraphicsModel implements ComponentModel {
 
     @Expose
     public Skeleton skeleton;
+
+    @Expose
+    public Animation animation;
 
     public AnimatedGraphicsModel(){
         tileSet = new TileSet("", 1, 1);
