@@ -3,15 +3,15 @@ package com.tjgs.robotevolution.components;
 import com.tjgs.robotevolution.components.model.PositionComponentModel;
 import com.tjgs.robotevolution.graphics.SpriteBatch;
 
+import org.joml.Vector2f;
+
 /**
  * Created by Tyler Johnson on 5/3/2016.
  *
  */
 public class PositionComponent implements Component{
 
-    protected float x;
-
-    protected float y;
+    protected Vector2f position;
 
     protected float angle;
 
@@ -19,37 +19,36 @@ public class PositionComponent implements Component{
      * No Args constructor for deserialization
      */
     public PositionComponent(PositionComponentModel model){
-        this.x = model.x;
-        this.y = model.y;
+        this.position = model.position;
         this.angle = model.angle;
     }
 
+    public Vector2f getPosition(){
+        return position;
+    }
+
     public float getX() {
-        return x;
+        return position.x;
     }
 
     public float getY() {
-        return y;
+        return position.y;
     }
 
     public float getAngle() {
         return angle;
     }
 
-    public void setX(float x) {
-        this.x = x;
+    public void setPosition(Vector2f pos){
+        this.position.set(pos);
     }
 
-    public void setY(float y) {
-        this.y = y;
+    public void setPosition(float x, float y){
+        this.position.set(x, y);
     }
 
-    public void addX(float dx){
-        this.x += dx;
-    }
-
-    public void addY(float dy){
-        this.y += dy;
+    public void add(float x, float y){
+        this.position.add(x, y);
     }
 
     public void setAngle(float angle) {
@@ -73,8 +72,7 @@ public class PositionComponent implements Component{
     @Override
     public PositionComponentModel getCompoenentModel() {
         PositionComponentModel model = new PositionComponentModel();
-        model.x = x;
-        model.y = y;
+        model.position = position;
         model.angle = angle;
         return model;
     }

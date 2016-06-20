@@ -4,14 +4,12 @@ import com.tjgs.robotevolution.animation.Animation;
 import com.tjgs.robotevolution.animation.Bone;
 import com.tjgs.robotevolution.animation.BoneAnimation;
 import com.tjgs.robotevolution.animation.Skeleton;
-import com.tjgs.robotevolution.components.SkeletonControllerComponent;
 import com.tjgs.robotevolution.components.model.AnimatedGraphicsModel;
 import com.tjgs.robotevolution.components.model.ColliderComponentModel;
 import com.tjgs.robotevolution.components.model.CollisionHandlerModel;
 import com.tjgs.robotevolution.components.model.GraphicsComponentModel;
 import com.tjgs.robotevolution.components.model.PhysicsComponentModel;
 import com.tjgs.robotevolution.components.model.PositionComponentModel;
-import com.tjgs.robotevolution.components.model.SimpleAIControllerComponentModel;
 import com.tjgs.robotevolution.components.model.SkeletonControllerModel;
 import com.tjgs.robotevolution.level.Level;
 
@@ -42,9 +40,7 @@ public class EntityFactory {
         builder.id = uniqueId++;
 
         PositionComponentModel posModel = new PositionComponentModel();
-        posModel.x = x;
-        posModel.y = y;
-        //posModel.angle = 45f;
+        posModel.position.set(x, y);
         builder.addComponent(posModel);
 
         PhysicsComponentModel physModel = new PhysicsComponentModel();
@@ -91,8 +87,7 @@ public class EntityFactory {
         playerBuilder.id = 0;
 
         PositionComponentModel posModel = new PositionComponentModel();
-        posModel.x = x;
-        posModel.y = y;
+        posModel.position.set(x, y);
         playerBuilder.addComponent(posModel);
 
         PhysicsComponentModel physModel = new PhysicsComponentModel();
@@ -123,8 +118,7 @@ public class EntityFactory {
         playerBuilder.id = 0;
 
         PositionComponentModel posModel = new PositionComponentModel();
-        posModel.x = x;
-        posModel.y = y;
+        posModel.position.set(x, y);
         playerBuilder.addComponent(posModel);
 
         PhysicsComponentModel physModel = new PhysicsComponentModel();
@@ -162,8 +156,7 @@ public class EntityFactory {
         skeletonBuilder.id = uniqueId++;
 
         PositionComponentModel posModel = new PositionComponentModel();
-        posModel.x = x;
-        posModel.y = y;
+        posModel.position.set(x, y);
         skeletonBuilder.addComponent(posModel);
 
         // ======== Animation Model ========//
@@ -191,8 +184,7 @@ public class EntityFactory {
         boneTexMap.put("Hydraulic", -1);
         boneTexMap.put("Wheel", 0);
 
-        Skeleton skeleton = new Skeleton(root, boneTexMap);
-        return skeleton;
+        return new Skeleton(root, boneTexMap);
     }
 
     public static Animation createPlayerAnimation(){

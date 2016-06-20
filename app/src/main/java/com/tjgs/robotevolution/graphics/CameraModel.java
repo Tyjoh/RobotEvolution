@@ -2,22 +2,18 @@ package com.tjgs.robotevolution.graphics;
 
 import com.google.gson.annotations.Expose;
 
+import org.joml.Vector2f;
+
 /**
  * Created by Tyler Johnson on 5/28/2016.
  *
  */
 public class CameraModel {
 
-    @Expose
-	public float x;
-    @Expose
-    public float y;
+    public Vector2f position;
 
     //target camera position
-    @Expose
-    public float targetX;
-    @Expose
-    public float targetY;
+    public Vector2f targetPos;
 
     //interpolation value for moving the camera
     @Expose
@@ -28,6 +24,10 @@ public class CameraModel {
     
     public float zoom = 1f;
 
+    public CameraModel(){
+        position = new Vector2f();
+        targetPos = new Vector2f();
+    }
 
     /**
      * Sets the cameras target position to move to
@@ -35,13 +35,11 @@ public class CameraModel {
      * @param y y position to follow
      */
     public void setTarget(float x, float y){
-        this.targetX = x;
-        this.targetY = y;
+        this.targetPos.set(x, y);
     }
 
     public void setPosition(float x, float y){
-        this.x = x;
-        this.y = y;
+        position.set(x, y);
     }
 
 

@@ -212,28 +212,28 @@ public class ColliderComponent implements Component{
     }
 
     public void resolveLeftCollision(float penetration){
-        positionComp.addX(penetration);
+        positionComp.add(penetration, 0);
         for(MapCollisionListener listener: mapCollisionListeners){
             listener.onLeftCollision(penetration);
         }
     }
 
     public void resolveRightCollision(float penetration){
-        positionComp.addX(-penetration);
+        positionComp.add(-penetration, 0);
         for(MapCollisionListener listener: mapCollisionListeners){
             listener.onRightCollision(penetration);
         }
     }
 
     public void resolveTopCollision(float penetration){
-        positionComp.addY(-penetration);
+        positionComp.add(0, -penetration);
         for(MapCollisionListener listener: mapCollisionListeners){
             listener.onTopCollision(penetration);
         }
     }
 
     public void resolveBottomCollision(float penetration){
-        positionComp.addY(penetration);
+        positionComp.add(0, penetration);
         for(MapCollisionListener listener: mapCollisionListeners){
             listener.onBottomCollision(penetration);
         }
@@ -303,9 +303,7 @@ public class ColliderComponent implements Component{
         if(component.getComponentType() == ComponentType.POSITION) {
             positionComp = (PositionComponent) component;
             Log.d("CollisionComponent", "position comp linked");
-        }
-
-        if(component.getComponentType() == ComponentType.PHYSICS) {
+        } else if(component.getComponentType() == ComponentType.PHYSICS) {
             physicsComp = (PhysicsComponent) component;
             Log.d("CollisionComponent", "physics comp linked");
         }

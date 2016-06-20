@@ -7,20 +7,22 @@ import com.tjgs.robotevolution.components.ComponentModel;
 import com.tjgs.robotevolution.components.ComponentType;
 import com.tjgs.robotevolution.level.Level;
 
+import org.joml.Vector2f;
+
 /**
  * Created by Tyler Johnson on 5/23/2016.
  *
  */
 public class PositionComponentModel implements ComponentModel{
 
-    @Expose
-    public float x;
-
-    @Expose
-    public float y;
+    public Vector2f position;
 
     @Expose
     public float angle;
+
+    public PositionComponentModel(){
+        position = new Vector2f();
+    }
 
     @Override
     public Component build(Level level) {

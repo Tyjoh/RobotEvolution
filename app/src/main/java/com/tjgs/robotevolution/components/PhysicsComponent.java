@@ -5,6 +5,8 @@ import android.util.Log;
 import com.tjgs.robotevolution.components.model.PhysicsComponentModel;
 import com.tjgs.robotevolution.graphics.SpriteBatch;
 
+import org.joml.Vector2f;
+
 /**
  * Created by Tyler Johnson on 5/2/2016.
  *
@@ -17,8 +19,7 @@ public class PhysicsComponent implements Component{
 
     protected PositionComponent positionComp;
 
-    protected float prevX;
-    protected float prevY;
+    protected Vector2f prevPos;
 
     protected float xVel;
     protected float yVel;
@@ -35,6 +36,8 @@ public class PhysicsComponent implements Component{
     protected float gravity;
 
     public PhysicsComponent(PhysicsComponentModel model){
+
+        prevPos = new Vector2f();
 
         xAccel = model.xAccel;
         yAccel = model.yAccel;
@@ -56,11 +59,9 @@ public class PhysicsComponent implements Component{
         else
             flyModeUpdate(dt);
 
-        prevX = positionComp.getX();
-        prevY = positionComp.getY();
+        prevPos.set(positionComp.getPosition());
 
-        positionComp.addX(xVel * dt);
-        positionComp.addY(yVel * dt);
+        positionComp.add(xVel * dt, yVel * dt);
 
     }
 
@@ -156,12 +157,16 @@ public class PhysicsComponent implements Component{
         this.yVel = yVel;
     }
 
+    public final Vector2f getPrevPos(){
+        return prevPos;
+    }
+
     public float getPrevX() {
-        return prevX;
+        return prevPos.x;
     }
 
     public float getPrevY() {
-        return prevY;
+        return prevPos.y;
     }
 
     @Override

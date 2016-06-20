@@ -10,14 +10,14 @@ import com.tjgs.robotevolution.components.ComponentType;
 import com.tjgs.robotevolution.components.PositionComponent;
 import com.tjgs.robotevolution.entity.Entity;
 
+import org.joml.Vector2f;
+
 /**
  * Created by Tyler Johnson on 4/24/2016.
  *
  * Object for managing the camera position in the world
  */
 public class Camera {
-
-    //TODO: implement camera shake, and other effects
 
     private static final String TAG = Camera.class.getSimpleName();
 
@@ -35,33 +35,22 @@ public class Camera {
     private float[] combined;
 
     //camera position
-    @Expose
-    private float x;
-    @Expose
-    private float y;
+    protected Vector2f position;
 
     //target camera position
-    @Expose
-    private float targetX;
-    @Expose
-    private float targetY;
+    protected Vector2f targetPos;
 
     //true if the cameras position is equal to target position
     private boolean targetReached;
 
     //interpolation value for moving the camera
-    @Expose
-    private float tweenSpeed = 7f;
+    private float tweenSpeed;
+
     //minimum speed the camera can move
     private float minTween;
 
-    //TODO: implement boosting for large camera movements
-    private boolean tweenBoost;
-    private float tweenBoostVal;
-
     private PositionComponent followPosition;
 
-    @Expose
     private int cameraFollowId;
 
     private boolean shouldFollow;
@@ -74,8 +63,8 @@ public class Camera {
      * @param height screen halfHeight
      */
     public Camera(float x, float y, int width, int height){
-        this.x = x;
-        this.y = y;
+        position = new Vector2f(x, y);
+        targetPos = new Vector2f();
 
         initialize();
 
@@ -94,11 +83,9 @@ public class Camera {
 
     public Camera(CameraModel model){
 
-        this.x = model.x;
-        this.y = model.y;
+        position = model.position;
 
-        this.targetX = model.targetX;
-        this.targetY = model.targetY;
+        this.targetPos = model.targetPos;
 
         this.tweenSpeed = model.tweenSpeed;
 
@@ -115,10 +102,8 @@ public class Camera {
     public void initialize(){
         targetReached = false;
 
-        //tweenSpeed = 7f;
+        tweenSpeed = 7f;
         minTween = 0.01f;
-        tweenBoost = false;
-        tweenBoostVal = 0.5f;
 
         shouldFollow = false;
 
@@ -133,13 +118,13 @@ public class Camera {
      * @param y y position to follow
      */
     public void setTarget(float x, float y){
-        this.targetX = x;
-        this.targetY = y;
+        this.targetPos.set(x, y);
         targetReached = false;
 
-        if(Math.abs(targetX - this.x) < minTween && Math.abs(targetY - this.y) < minTween){
-            this.x = targetX;
-            this.y = targetY;
+        if(Math.abs(targetPos.x - position.x) < minTween && Math.abs(targetPos.y - position.y) < minTween){
+//            this.x = targetX;
+//            this.y = targetY;
+            position.set(targetPos);
             targetReached = true;
         }
     }
@@ -173,25 +158,23 @@ public class Camera {
             setTarget(followPosition.getX(), followPosition.getY());
 
         if(!targetReached) {
-            float dx = targetX - x;
-            float dy = targetY - y;
 
-            float tx = dx * tweenSpeed;
-            float ty = dy * tweenSpeed;
+            Vector2f disp = new Vector2f();
+            targetPos.sub(position, disp).mul(tweenSpeed);
 
-            if (Math.abs(tx) > minTween) {
-                x += tx * dt;
+            if (Math.abs(disp.x) > minTween) {
+                position.x += disp.x * dt;
             }else{
-                x = targetX;
+                position.x = targetPos.x;
             }
 
-            if (Math.abs(ty) > minTween) {
-                y += ty * dt;
+            if (Math.abs(disp.y) > minTween) {
+                position.y += disp.y * dt;
             }else{
-                y = targetY;
+                position.y = targetPos.y;
             }
 
-            targetReached = (x == targetX && y == targetY);
+            targetReached = (position.x == targetPos.x && position.y == targetPos.y);
 
             updateViewMatrix();
         }
@@ -232,7 +215,7 @@ public class Camera {
      */
     private void updateViewMatrix(){
         //set view matrix
-        Matrix.setLookAtM(viewMatrix, 0, x, y, -3f, x, y, 0f, 0f, 1.0f, 0f);
+        Matrix.setLookAtM(viewMatrix, 0, position.x, position.y, -3f, position.x, position.y, 0f, 0f, 1.0f, 0f);
         //update combined matrix
         Matrix.multiplyMM(combined, 0, projectionMatrix, 0, viewMatrix, 0);
     }
@@ -281,26 +264,28 @@ public class Camera {
         return cameraFollowId;
     }
 
+    public final Vector2f getPosition(){
+        return position;
+    }
+
     /**
      * @return camera x position
      */
     public float getX() {
-        return x;
+        return position.x;
     }
 
     /**
      * @return camera y position
      */
     public float getY() {
-        return y;
+        return position.y;
     }
 
     public CameraModel getCameraModel(){
         CameraModel model = new CameraModel();
-        model.x = x;
-        model.y = y;
-        model.targetX = targetX;
-        model.targetY = targetY;
+        model.position = position;
+        model.targetPos = targetPos;
         model.tweenSpeed = tweenSpeed;
         model.cameraFollowId = cameraFollowId;
         return model;
