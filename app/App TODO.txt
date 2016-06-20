@@ -1,0 +1,90 @@
+	Second tile layer / improve shaders
+	Implement tinting sprites
+	JavaDoc
+
+Time line estimator:
+	Map editor - 75hrs
+	Animation engine - 40hrs
+	Physics / Collision - 25hrs
+	Game Mechanics - 100hrs
+	AI - 40hrs
+	GUI - 50hrs
+	Graphics - 75hrs
+	Level/Content - 50hrs
+	Sound - 40hrs
+
+Big Features
+	Skeletal Animation
+	Animation controller System
+	Circle vs Rectangle vs Triangle collision
+	Collision events and response
+	Somewhat physically interactive objects (push, ride, push player)
+	Particles
+	Normal Maps / lighting
+	Level scripting, Trigger events, Timing events
+
+General TODO:
+	Integrate Math library
+	Robust game loop
+	Custom Art		
+	
+Skeletal Animation TODO:
+	Z order bones
+	Clean up loose ends and hacky/unused methods
+	Documentation
+	
+Animation Controller System TODO:
+	Design a system that can easily control bones based on physical properties and events
+	and configured via map editor and files
+	Implement a Animation cache so animations get reused
+	Implement a AnimationState class so entities can more robustly manage their animation states
+	Implement an Algorithm for displaying a skeleton pose at any given animation time
+		(for animation editor)
+
+Collision Detection TODO:
+	Circle VS AABB VS Triangle
+	VS Oriented Bodies(Not urgent)
+
+Collision Events and Response TODO:
+	Respond to collisions based on entity/collision type
+	Respond to collisions based on collision location
+
+Physicaly interactive objects TODO:
+	reuse map collision code but apply resolution to objects that should be affected
+	Ridable objects
+	objects that push the player
+
+Particles TODO:
+	Emitters
+	emit given a texture
+	emit based on underlying texture
+	partialy physicaly interactive (depending on approach)
+
+Graphics TODO:
+	Normal maps
+	Lighting
+	glow maps
+
+Level scripting TODO:
+	events based on time
+	events based on collision / proximity
+	events based on switches / buttons
+
+
+
+
+***Continue Map Editor when base game engine is stable and not subject to major changes***
+
+MapEditor  TODO:
+	saving level
+	loading level
+	remove components
+	componentDependencies
+	auto add component dependencies
+	fix zoom so camera zooms in on mouse cursor
+	move entity via click/drag
+	start values panel at bottom
+	add toolbar
+	tile set loader
+	tile selector
+	store tile to collision mapping
