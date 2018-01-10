@@ -1,7 +1,7 @@
 # RobotEvolution
 2D platformer for android built from scratch. Mainly meant to end up as a reusable engine at some point. (Unfinished)
 
-## Significant features
+## Current significant features
 + Implemented custom graphics apis built on top of OpenGLES 2 ([Code](https://github.com/Tyjoh/RobotEvolution/tree/master/app/src/main/java/com/tjgs/robotevolution/graphics))
 
 + Tile based maps with support for 1:1 and 1:2 slopes.
